@@ -51,8 +51,8 @@ if __name__ == "__main__":
     y_axis = best_slope * x_axis
 
 
-    #plt.scatter(theta_all, cost_all, linewidth=1.5, c=np.arange(len(cost_all)))
+    plt.scatter(theta_all, cost_all, linewidth=1.5, c=np.arange(len(cost_all)))
     #plt.scatter(data['ME_Power'], data['ME_RPM'], alpha=0.9)
-    plt.scatter(X, Y, alpha=0.4, zorder=0)
-    plt.plot(x_axis, y_axis, c='#FF8177')
+    #plt.scatter(X, Y, alpha=0.4, zorder=0)
+    #plt.plot(x_axis, y_axis, c='#FF8177')
     plt.show()
