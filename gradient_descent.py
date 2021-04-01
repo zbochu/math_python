@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import PySimpleGUI as sg
 
 def g_2x(x):
     return 2*x
@@ -16,25 +19,30 @@ def MSE_derivative(x, y, theta):
     cost_derivative = (1 / m) * np.sum((theta * x - y) * x)
     return cost_derivative
 
-
+def draw_figure(canvas, figure):
+    figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
+    figure_canvas_agg.draw()
+    figure_canvas_agg.get_tk_widget().pack(side="top", fill="both", expand=1)
+    return figure_canvas_agg
 
 if __name__ == "__main__":
     print('Starting ...')
+    matplotlib.use("TkAgg")
 
-#    data = pd.read_csv("./power_rpm.csv", sep=";")
+    data = pd.read_csv("./power_rpm.csv", sep=";")
 #    data = pd.read_csv("https://raw.githubusercontent.com/hadrienj/essential_math_for_data_science/master/data/beer_dataset.csv", sep=",")
-    data = pd.read_csv("https://raw.githubusercontent.com/hadrienj/essential_math_for_data_science/master/data/happiness_2020.csv", sep=",")
+#    data = pd.read_csv("https://raw.githubusercontent.com/hadrienj/essential_math_for_data_science/master/data/happiness_2020.csv", sep=",")
     
 
 #    print(data.iloc[:100])
 #    X = data['Temperatura Maxima (C)'].to_numpy().reshape(-1, 1)
 #    Y = data['Consumo de cerveja (litros)'].to_numpy().reshape(-1, 1)
 
-#     X = data['ME_Power'].to_numpy().reshape(-1, 1)
-#     Y = data['ME_RPM'].to_numpy().reshape(-1, 1)
+    X = data['ME_Power'].to_numpy().reshape(-1, 1)
+    Y = data['ME_RPM'].to_numpy().reshape(-1, 1)
 
-    X = data['Perceptions of corruption'].to_numpy().reshape(-1, 1)
-    Y = data['Ladder score'].to_numpy().reshape(-1, 1)
+#    X = data['Perceptions of corruption'].to_numpy().reshape(-1, 1)
+#    Y = data['Ladder score'].to_numpy().reshape(-1, 1)
 
     
     standard_scaler = StandardScaler()
